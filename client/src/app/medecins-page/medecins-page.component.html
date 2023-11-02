@@ -1,0 +1,14 @@
+<h1>Voici la liste des médecins</h1>
+<table id="all-medecins">
+  <tr id="column-names">
+    <td *ngFor="let medecin of CommunicationService.medecins_column_name">{{ medecin }}</td>
+  </tr>
+  <tr id="medecin-rows" *ngFor="let medecin of CommunicationService.medecins_row_data">
+    <td>{{medecin.idmedecin}}</td>
+    <td>{{medecin.prenom}}</td>
+    <td>{{medecin.nom}}</td>
+    <td>{{medecin.anneesexperience}}</td>
+    <td>{{medecin.idservice}}</td>
+    <td>{{medecin.specialite}}</td>
+  </tr>
+</table>
