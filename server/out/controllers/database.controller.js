@@ -41,7 +41,11 @@ let DatabaseController = class DatabaseController {
         this.router = (0, express_1.Router)();
         this.router.get('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
             const medecins = yield this.databaseService.getAllMedecins();
-            res.status(200).json(medecins);
+            res.status(200).json(medecins.rows);
+        }));
+        this.router.get('/id', (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const ids = yield this.databaseService.getAllIDs();
+            res.status(200).json(ids);
         }));
     }
 };

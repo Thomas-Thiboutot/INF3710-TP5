@@ -39,6 +39,14 @@ let DatabaseService = class DatabaseService {
             return res;
         });
     }
+    getAllIDs() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const client = yield this.pool.connect();
+            const ids = (yield client.query(`SELECT idmedecin FROM Medecins;`)).rows;
+            client.release();
+            return ids;
+        });
+    }
 };
 DatabaseService = __decorate([
     (0, inversify_1.injectable)()

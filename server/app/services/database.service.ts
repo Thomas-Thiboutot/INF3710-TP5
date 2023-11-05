@@ -21,4 +21,11 @@ export class DatabaseService {
     client.release();
     return res;
   }
+
+  public async getAllIDs() {
+    const client = await this.pool.connect();
+    const ids = (await client.query(`SELECT idmedecin FROM Medecins;`)).rows;
+    client.release();
+    return ids;
+  }
 }

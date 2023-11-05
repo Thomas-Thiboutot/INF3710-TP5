@@ -9,11 +9,13 @@ import { CommunicationService } from "./services/communication.service";
 import { AppMaterialModule } from './modules/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MedecinsPageComponent } from './medecins-page/medecins-page.component';
+import { InsertMedecinFormComponent } from './insert-medecin-form/insert-medecin-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MedecinsPageComponent
+    MedecinsPageComponent,
+    InsertMedecinFormComponent
   ],
   imports: [
     CommonModule,

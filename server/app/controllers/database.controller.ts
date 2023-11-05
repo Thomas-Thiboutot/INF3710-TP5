@@ -22,7 +22,13 @@ export class DatabaseController {
     this.router = Router();
     this.router.get('/', async (req, res) => {
       const medecins = await this.databaseService.getAllMedecins();
-      res.status(200).json(medecins);
+
+      res.status(200).json(medecins.rows);
+    });
+
+    this.router.get('/id', async (req, res) => {
+      const ids = await this.databaseService.getAllIDs();
+      res.status(200).json(ids);
     });
 
   }

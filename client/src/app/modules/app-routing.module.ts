@@ -3,10 +3,12 @@ import { RouterModule, Routes } from "@angular/router";
 
 // import { AppComponent } from "../app.component";
 import { MedecinsPageComponent } from "../medecins-page/medecins-page.component";
+import { InsertMedecinFormComponent } from "../insert-medecin-form/insert-medecin-form.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
-  { path: 'database', component: MedecinsPageComponent }
+  { path: 'database', component: MedecinsPageComponent },
+  { path: 'insert', component: InsertMedecinFormComponent },
 ];
 
 @NgModule({
