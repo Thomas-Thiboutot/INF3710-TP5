@@ -7,17 +7,18 @@ import { CommunicationService } from '../services/communication.service';
   styleUrls: ['./insert-medecin-form.component.css']
 })
 export class InsertMedecinFormComponent implements AfterViewInit{
-  existingIDs : string[] = [];
+  existingIDs : number[] = [];
+  isvalid: boolean = true;
   constructor(public CommunicationService: CommunicationService) {}
 
   specialites = ['Dermatologie','Neurologie', 'Ophtalmologie', 'Orthopédie',
    'Psychiatrie', 'Cardiologie', 'Pédiatrie',
     'Chirurgie', 'Gynécologie', 'Radiologie'];
 
-  model = new Medecin('12', 'Martin', 'Tremblay', 'Dermatologie', 10, 0);
+  model = new Medecin(12, 'Martin', 'Tremblay', 'Dermatologie', 10, 0);
 
   OnSubmit() {
-    this.CommunicationService.insertNewMedecin(this.model);
+      this.CommunicationService.insertNewMedecin(this.model).subscribe();
   }
 
   ngAfterViewInit() {
@@ -25,25 +26,20 @@ export class InsertMedecinFormComponent implements AfterViewInit{
     if(data.body)
       this.existingIDs = JSON.parse(data.body).map((id:Medecin)=> id.idmedecin);
     });
-
   }
 
-  checkID(){
-    let isvalid = true;
-    for(let i in this.existingIDs) {
-      if (this.model.idmedecin == i)
-        isvalid = false;
+  onChangeID(event: any){
+    this.isvalid = true;
+    for(let i of this.existingIDs) {
+      if (event.target.value == Number(i))
+        this.isvalid = !this.isvalid;
     }
-    return isvalid;
   }
+
   onChange(event: any) {
     this.specialites.forEach((elem, idx) => {
       if(event.target.value == elem) {
           this.model.idservice = idx;
       }
   })};
-
-  getServiceID() {
-
-  }
 }

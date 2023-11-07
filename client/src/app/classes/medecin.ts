@@ -1,6 +1,6 @@
 export class Medecin {
   constructor(
-    public idmedecin: string,
+    public idmedecin: number,
     public prenom: string,
     public nom: string,
     public specialite: string,

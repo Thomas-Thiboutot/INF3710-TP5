@@ -1,22 +1,21 @@
 <body>
-  {{model | json}}
 <h1 id="page-title">Ajouter un médecin</h1>
 <form (ngsubmit)="OnSubmit()" #medecinForm="ngForm">
   <div class="form-group">
     <label for="idmedecin">ID </label>
       <input #idmedecin="ngModel" id="idmedecin" class="form-control"
-      type="text" placeholder="12345" [(ngModel)]="model.idmedecin" name="idmedecin" required>
+      type="number" placeholder="12345" [(ngModel)]="model.idmedecin" name="idmedecin" (change)="onChangeID($event)" required>
       <div [hidden]="idmedecin.valid || idmedecin.pristine"
          class="alert alert-danger">
       Un identifiant est requis
     </div>
-    <div [hidden]="checkID()" class="alert alert-danger">Cet identifiant existe déjà</div>
+    <div [hidden]="isvalid" class="alert alert-danger">Cet identifiant existe déjà</div>
   </div>
 
 <div class="form-group">
 <label for="prenom">Prenom</label>
   <input #prenom="ngModel" id="prenom" class="form-control"
-  type="text" placeholder="Martin" [(ngModel)]="model.prenom" name="prenom" required>
+  type="text" placeholder="Martin" [(ngModel)]="model.prenom" name="prenom" pattern="[a-zA-Z]+" required>
   <div [hidden]="prenom.valid || prenom.pristine"
      class="alert alert-danger">
   Un prenom est requis
@@ -26,7 +25,7 @@
 <div class="form-group">
   <label for="nom">Nom </label>
     <input #nom="ngModel" id="nom" class="form-control"
-    type="text" placeholder="Tremblay" [(ngModel)]="model.nom" name="nom" required>
+    type="text" placeholder="Tremblay" [(ngModel)]="model.nom" name="nom" pattern="[a-zA-Z]+"required>
     <div [hidden]="nom.valid || nom.pristine"
        class="alert alert-danger">
     Un nom est requis
@@ -35,26 +34,27 @@
 
 <div class="form-group">
   <label for="specialite">Spécialité</label>
-  <select class="form-control" id="specialite" (change)="onChange($event)" required>
+  <select #specialite="ngModel" class="form-control" id="specialite" (change)="onChange($event)"
+   [(ngModel)]="model.specialite" name="specialite" required>
     <option *ngFor="let specialite of specialites" [value]="specialite">{{specialite}}</option>
   </select>
 </div>
 
-<div class="form-group">
-  <label for="anneesexperience">ID service: {{model.idservice}}</label>
+<div>
+  <h2>ID service: {{model.idservice}}</h2>
 </div>
 
 <div class="form-group">
   <label for="anneesexperience">Années d'expérience</label>
     <input #anneesexperience="ngModel" id="anneesexperience" class="form-control"
-    type="text" placeholder="10" [(ngModel)]="model.anneesexperience" name="anneesexperience" required>
+    type="number" placeholder="10" [(ngModel)]="model.anneesexperience" name="anneesexperience" required>
     <div [hidden]="anneesexperience.valid || anneesexperience.pristine"
        class="alert alert-danger">
     Un nombre d'année(s) d'expérience est requis
 </div>
 
 </div>
-<button mat-raised-button type="submit" class="btn btn-success" [disabled]="!medecinForm.form.valid || !checkID()" (click)="OnSubmit()">
+<button mat-raised-button type="submit" class="btn btn-success" [disabled]="!medecinForm.form.valid || !isvalid" (click)="OnSubmit()">
   Soumettre</button>
 </form>
 </body>
