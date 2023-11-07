@@ -14,17 +14,14 @@ export class InsertMedecinFormComponent implements AfterViewInit{
    'Psychiatrie', 'Cardiologie', 'Pédiatrie',
     'Chirurgie', 'Gynécologie', 'Radiologie'];
 
-  model = new Medecin('12', 'Martin', 'Tremblay', 'Dermatologie', 10, 3);
-
-  submitted = false;
+  model = new Medecin('12', 'Martin', 'Tremblay', 'Dermatologie', 10, 0);
 
   OnSubmit() {
-    this.submitted = true;
+    this.CommunicationService.insertNewMedecin(this.model);
   }
 
   ngAfterViewInit() {
    this.CommunicationService.getMedecin().subscribe((data)=>{
-    console.log(JSON.parse(data.body!).map((id:Medecin)=> id.idmedecin));
     if(data.body)
       this.existingIDs = JSON.parse(data.body).map((id:Medecin)=> id.idmedecin);
     });
@@ -38,5 +35,15 @@ export class InsertMedecinFormComponent implements AfterViewInit{
         isvalid = false;
     }
     return isvalid;
+  }
+  onChange(event: any) {
+    this.specialites.forEach((elem, idx) => {
+      if(event.target.value == elem) {
+          this.model.idservice = idx;
+      }
+  })};
+
+  getServiceID() {
+
   }
 }

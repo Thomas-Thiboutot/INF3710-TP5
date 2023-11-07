@@ -11,6 +11,6 @@ export class MedecinsPageComponent implements AfterViewInit {
   constructor(public CommunicationService: CommunicationService) { }
 
     ngAfterViewInit(): void {
-      //this.CommunicationService.getMedecins();
+      this.CommunicationService.getMedecinData();
   }
 }

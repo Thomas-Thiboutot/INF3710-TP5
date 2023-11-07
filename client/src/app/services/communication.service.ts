@@ -1,8 +1,9 @@
 // À DÉCOMMENTER ET À UTILISER LORSQUE VOTRE COMMUNICATION EST IMPLÉMENTÉE
 // import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, Subject } from "rxjs";
+import { Observable, Subject, map } from "rxjs";
 import { HttpClient } from '@angular/common/http';
+import { Medecin } from "../classes/medecin";
 
 @Injectable()
 export class CommunicationService {
@@ -10,7 +11,7 @@ export class CommunicationService {
   // private readonly BASE_URL: string = "http://localhost:3000/database";
   // public constructor(private readonly http: HttpClient) {}
   existingIDs:string[] = [];
-  medecins_column_name = [];
+  medecins_column_name: string[] = [];
   medecins_row_data = [];
   private _listeners: any = new Subject<any>();
   private readonly baseUrl: string = 'http://localhost:3000';
@@ -24,33 +25,23 @@ export class CommunicationService {
     this._listeners.next(filterBy);
   }
 
-  //getMedecins() {
-  //  this.http.get(`${this.baseUrl}/database`).subscribe((medecins: any) => {
-  //    this.medecins_row_data = JSON.parse(JSON.stringify(medecins.rows));
-  //    const fields = JSON.parse(JSON.stringify(medecins.fields));
-  //    this.medecins_column_name = fields.map((obj : any) => obj.name);
-  //    this.existingIDs = this.medecins_row_data.map((medecin_data : Medecin)=> medecin_data.idmedecin);
-  //  });
-  //}
+  async getMedecinData() {
+    this.getMedecin().subscribe((medecins: any)=>{
+      this.medecins_row_data = JSON.parse(medecins.body);
+      this.medecins_column_name = Object.keys((JSON.parse(medecins.body))[0]);
+  })
+}
 
   getMedecin() {
     return this.http
     .get(`${this.baseUrl}/database`, { observe: 'response', responseType: 'text' });
   }
-  //getIDs(): Observable<number[]> {
-  //  return this.http
-  //          .get(`${this.baseUrl}/database/id`, { observe: 'body', responseType: 'text' })
-  //          .pipe(map((body: any) => JSON.parse(body)));
-  //}
-//
-  //async getValidIDs() {
-  //  this.getIDs().subscribe((ids)=> {
-  //    this.existingIDs = ids;
-  //  });
-//
-  //  console.log(this.existingIDs);
-  //}
 
+  insertNewMedecin(model: Medecin) {
+    console.log(model);
+    return this.http.post(`${this.baseUrl}/database`, model, { observe: 'response', responseType: 'text' })
+    .pipe(map((res) => res.status === 201));
+  }
 
   // À DÉCOMMENTER ET À UTILISER LORSQUE VOTRE COMMUNICATION EST IMPLÉMENTÉE
   // private handleError<T>(
