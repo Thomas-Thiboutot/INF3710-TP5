@@ -22,13 +22,13 @@ export class DatabaseController {
     this.router = Router();
     this.router.get('/', async (req, res) => {
       const medecins = await this.databaseService.getAllMedecins();
-
       res.status(200).json(medecins.rows);
     });
 
-    this.router.get('/id', async (req, res) => {
-      const ids = await this.databaseService.getAllIDs();
-      res.status(200).json(ids);
+    this.router.post('/', async (req, res) => {
+      console.log("allo");
+      await this.databaseService.insertNewMedecin(req.body);
+      res.status(201).json("Insertion completée");
     });
 
   }

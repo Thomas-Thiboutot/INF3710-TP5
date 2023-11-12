@@ -29,9 +29,6 @@ export class Application {
 
   public bindRoutes(): void {
     // Notre application utilise le routeur de notre API
-    //this.app.get('/database', (req, res) => {
-    //  console.log("First hello");
-    //})
     this.app.use('/database', this.databaseController.router);
     this.errorHandeling();
   }

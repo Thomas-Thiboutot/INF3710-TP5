@@ -47,6 +47,23 @@ let DatabaseService = class DatabaseService {
             return ids;
         });
     }
+    insertNewMedecin(med) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const client = yield this.pool.connect();
+            const values = [
+                Number(med.idmedecin),
+                med.prenom,
+                med.nom,
+                med.specialite,
+                Number(med.anneesexperience),
+                Number(med.idservice)
+            ];
+            const queryText = `INSERT INTO Medecins VALUES($1,$2,$3,$4,$5,$6);`;
+            const res = yield client.query(queryText, values);
+            client.release();
+            return res;
+        });
+    }
 };
 DatabaseService = __decorate([
     (0, inversify_1.injectable)()

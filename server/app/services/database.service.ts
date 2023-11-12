@@ -24,8 +24,26 @@ export class DatabaseService {
 
   public async getAllIDs() {
     const client = await this.pool.connect();
-    const ids = (await client.query(`SELECT idmedecin FROM Medecins;`)).rows;
+    var sql = "SELECT idmedecin FROM Medecins;";
+    const ids = (await client.query(sql)).rows;
     client.release();
     return ids;
+  }
+
+  public async insertNewMedecin(med: any) {
+    const client = await this.pool.connect();
+    const values: string[] = [
+		  Number(med.idmedecin),
+      med.prenom,
+      med.nom,
+      med.specialite,
+      Number(med.anneesexperience),
+      Number(med.idservice)
+      ];
+
+	  const queryText: string = `INSERT INTO Medecins VALUES($1,$2,$3,$4,$5,$6);`;
+    const res = await client.query(queryText, values);
+    client.release();
+    return res;
   }
 }
