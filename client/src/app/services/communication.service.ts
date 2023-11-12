@@ -10,12 +10,12 @@ export class CommunicationService {
   // À DÉCOMMENTER ET À UTILISER LORSQUE VOTRE COMMUNICATION EST IMPLÉMENTÉE
   // private readonly BASE_URL: string = "http://localhost:3000/database";
   // public constructor(private readonly http: HttpClient) {}
-  existingIDs:string[] = [];
+  existingIDs: string[] = [];
   medecins_column_name: string[] = [];
   medecins_row_data = [];
   private _listeners: any = new Subject<any>();
   private readonly baseUrl: string = 'http://localhost:3000';
-  constructor(private readonly http: HttpClient){}
+  constructor(private readonly http: HttpClient) { }
 
   listen(): Observable<any> {
     return this._listeners.asObservable();
@@ -26,20 +26,25 @@ export class CommunicationService {
   }
 
   async getMedecinData() {
-    this.getMedecin().subscribe((medecins: any)=>{
+    this.getMedecin().subscribe((medecins: any) => {
       this.medecins_row_data = JSON.parse(medecins.body);
       this.medecins_column_name = Object.keys((JSON.parse(medecins.body))[0]);
-  })
-}
+    })
+  }
 
   getMedecin() {
     return this.http
-    .get(`${this.baseUrl}/database`, { observe: 'response', responseType: 'text' });
+      .get(`${this.baseUrl}/database`, { observe: 'response', responseType: 'text' });
   }
 
   insertNewMedecin(model: Medecin) {
     return this.http.post(`${this.baseUrl}/database`, model, { observe: 'response', responseType: 'text' })
-    .pipe(map((res) => res.status === 201));
+      .pipe(map((res) => res.status === 201));
+  }
+
+  updateMedecin(medecin: Medecin): Observable<boolean> {
+    return this.http.put(`${this.baseUrl}/database/medecin/${medecin.idmedecin}`, medecin, { observe: 'response', responseType: 'text' })
+      .pipe(map((res) => res.status === 200));
   }
 
   // À DÉCOMMENTER ET À UTILISER LORSQUE VOTRE COMMUNICATION EST IMPLÉMENTÉE
