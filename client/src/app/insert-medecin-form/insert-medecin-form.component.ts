@@ -15,9 +15,12 @@ export class InsertMedecinFormComponent implements AfterViewInit{
    'Psychiatrie', 'Cardiologie', 'Pédiatrie',
     'Chirurgie', 'Gynécologie', 'Radiologie'];
 
+  numbers = [0,1,2,3,4,5,6,7,8,9];
+
   model = new Medecin(12, 'Martin', 'Tremblay', 'Dermatologie', 10, 0);
 
   OnSubmit() {
+    console.log(this.model.idservice);
       this.CommunicationService.insertNewMedecin(this.model).subscribe();
   }
 
@@ -36,10 +39,4 @@ export class InsertMedecinFormComponent implements AfterViewInit{
     }
   }
 
-  onChange(event: any) {
-    this.specialites.forEach((elem, idx) => {
-      if(event.target.value == elem) {
-          this.model.idservice = idx;
-      }
-  })};
 }

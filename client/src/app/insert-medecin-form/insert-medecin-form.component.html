@@ -34,14 +34,18 @@
 
 <div class="form-group">
   <label for="specialite">Spécialité</label>
-  <select #specialite="ngModel" class="form-control" id="specialite" (change)="onChange($event)"
+  <select #specialite="ngModel" class="form-control" id="specialite"
    [(ngModel)]="model.specialite" name="specialite" required>
     <option *ngFor="let specialite of specialites" [value]="specialite">{{specialite}}</option>
   </select>
 </div>
 
-<div>
-  <h2>ID service: {{model.idservice}}</h2>
+<div class="form-group">
+  <label for="idservice">ID service</label>
+  <select #idservice="ngModel" class="form-control" id="idservice"
+   [(ngModel)]="model.idservice" name="idservice" placeholder="0" required>
+    <option *ngFor="let number of numbers" [value]="number">{{number}}</option>
+  </select>
 </div>
 
 <div class="form-group">

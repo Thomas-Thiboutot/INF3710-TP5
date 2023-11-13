@@ -38,7 +38,6 @@ export class CommunicationService {
   }
 
   insertNewMedecin(model: Medecin) {
-    console.log(model);
     return this.http.post(`${this.baseUrl}/database`, model, { observe: 'response', responseType: 'text' })
     .pipe(map((res) => res.status === 201));
   }
