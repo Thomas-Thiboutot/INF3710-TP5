@@ -42,7 +42,8 @@ let DatabaseService = class DatabaseService {
     getAllIDs() {
         return __awaiter(this, void 0, void 0, function* () {
             const client = yield this.pool.connect();
-            const ids = (yield client.query(`SELECT idmedecin FROM Medecins;`)).rows;
+            var sql = "SELECT idmedecin FROM Medecins;";
+            const ids = (yield client.query(sql)).rows;
             client.release();
             return ids;
         });
@@ -50,6 +51,8 @@ let DatabaseService = class DatabaseService {
     insertNewMedecin(med) {
         return __awaiter(this, void 0, void 0, function* () {
             const client = yield this.pool.connect();
+            console.log(med.idservice);
+            console.log(typeof (med.idservice));
             const values = [
                 Number(med.idmedecin),
                 med.prenom,

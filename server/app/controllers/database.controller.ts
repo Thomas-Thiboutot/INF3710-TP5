@@ -26,7 +26,6 @@ export class DatabaseController {
     });
 
     this.router.post('/', async (req, res) => {
-      console.log("allo");
       await this.databaseService.insertNewMedecin(req.body);
       res.status(201).json("Insertion completée");
     });

@@ -44,7 +44,6 @@ let DatabaseController = class DatabaseController {
             res.status(200).json(medecins.rows);
         }));
         this.router.post('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
-            console.log("allo");
             yield this.databaseService.insertNewMedecin(req.body);
             res.status(201).json("Insertion completée");
         }));
