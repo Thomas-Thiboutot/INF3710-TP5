@@ -51,8 +51,6 @@ let DatabaseService = class DatabaseService {
     insertNewMedecin(med) {
         return __awaiter(this, void 0, void 0, function* () {
             const client = yield this.pool.connect();
-            console.log(med.idservice);
-            console.log(typeof (med.idservice));
             const values = [
                 Number(med.idmedecin),
                 med.prenom,

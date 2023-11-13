@@ -4,7 +4,7 @@
   <div class="form-group">
     <label for="idmedecin">ID </label>
       <input #idmedecin="ngModel" id="idmedecin" class="form-control"
-      type="number" placeholder="12345" [(ngModel)]="model.idmedecin" name="idmedecin" (change)="onChangeID($event)" required>
+      type="number" placeholder="12345" [(ngModel)]="model.idmedecin" name="idmedecin" (change)="onChangeID($event)" min="0" required>
       <div [hidden]="idmedecin.valid || idmedecin.pristine"
          class="alert alert-danger">
       Un identifiant est requis
@@ -51,7 +51,7 @@
 <div class="form-group">
   <label for="anneesexperience">Années d'expérience</label>
     <input #anneesexperience="ngModel" id="anneesexperience" class="form-control"
-    type="number" placeholder="10" [(ngModel)]="model.anneesexperience" name="anneesexperience" required>
+    type="number" placeholder="10" [(ngModel)]="model.anneesexperience" name="anneesexperience" min="0" required>
     <div [hidden]="anneesexperience.valid || anneesexperience.pristine"
        class="alert alert-danger">
     Un nombre d'année(s) d'expérience est requis
