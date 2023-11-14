@@ -10,12 +10,14 @@ import { AppMaterialModule } from './modules/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MedecinsPageComponent } from './medecins-page/medecins-page.component';
 import { InsertMedecinFormComponent } from './insert-medecin-form/insert-medecin-form.component';
+import { ModifyMedecinComponent } from './modify-medecin/modify-medecin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MedecinsPageComponent,
-    InsertMedecinFormComponent
+    InsertMedecinFormComponent,
+    ModifyMedecinComponent
   ],
   imports: [
     CommonModule,

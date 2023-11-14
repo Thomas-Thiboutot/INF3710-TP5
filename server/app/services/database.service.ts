@@ -31,19 +31,26 @@ export class DatabaseService {
   }
 
   public async insertNewMedecin(med: any) {
-    const client = await this.pool.connect();
+    const client = await this.pool.connect();
     const values: string[] = [
-		  Number(med.idmedecin),
+      Number(med.idmedecin),
       med.prenom,
       med.nom,
       med.specialite,
       Number(med.anneesexperience),
       Number(med.idservice)
-      ];
+    ];
 
-	  const queryText: string = `INSERT INTO Medecins VALUES($1,$2,$3,$4,$5,$6);`;
+    const queryText: string = `INSERT INTO Medecins VALUES($1,$2,$3,$4,$5,$6);`;
     const res = await client.query(queryText, values);
     client.release();
     return res;
+  }
+
+  public async updateMedecin(idMedecin: number, prenom: string, nom: string, specialite: string, anneesExperience: number, idService: number) {
+    const client = await this.pool.connect();
+    const query = `UPDATE Medecins SET prenom = $2, nom = $3, specialite = $4, anneesExperience = $5, idService = $6 WHERE idMedecin = $1;`;
+    await client.query(query, [idMedecin, prenom, nom, specialite, anneesExperience, idService]);
+    client.release();
   }
 }
