@@ -5,12 +5,12 @@ import Types from "../types";
 
 @injectable()
 export class DatabaseController {
-  router : Router;
+  router: Router;
   public constructor(
     // @ts-ignore -- À ENLEVER LORSQUE L'IMPLÉMENTATION EST TERMINÉE
     @inject(Types.DatabaseService) private readonly databaseService: DatabaseService
   ) {
-    this.configureRouter(); 
+    this.configureRouter();
   }
 
   // public get router(): Router {
@@ -28,6 +28,18 @@ export class DatabaseController {
     this.router.post('/', async (req, res) => {
       await this.databaseService.insertNewMedecin(req.body);
       res.status(201).json("Insertion completée");
+    });
+
+    this.router.put('/medecin/:id', async (req, res) => {
+      const id = parseInt(req.params.id);
+      const { prenom, nom, specialite, anneesexperience, idservice } = req.body;
+
+      try {
+        const updatedMedecin = await this.databaseService.updateMedecin(id, prenom, nom, specialite, anneesexperience, idservice);
+        res.status(200).json(updatedMedecin);
+      } catch (error) {
+        res.status(500).send(error.message);
+      }
     });
 
   }
