@@ -1,6 +1,6 @@
 <body>
 <h1 id="page-title">Ajouter un médecin</h1>
-<form (ngsubmit)="OnSubmit()" #medecinForm="ngForm">
+<form id="insert-form" (ngsubmit)="OnSubmit()" #medecinForm="ngForm">
   <div class="form-group">
     <label for="idmedecin">ID </label>
       <input #idmedecin="ngModel" id="idmedecin" class="form-control"
@@ -58,7 +58,8 @@
 </div>
 
 </div>
-<button mat-raised-button type="submit" class="btn btn-success" [disabled]="!medecinForm.form.valid || !isvalid" (click)="OnSubmit()">
+<a routerLink="/submitted">
+<button mat-raised-button type="submit" class="btn btn-success" [disabled]="!medecinForm.form.valid || !isvalid " (click)="OnSubmit(); medecinForm.reset()">
   Soumettre</button>
+  </a>
 </form>
-</body>

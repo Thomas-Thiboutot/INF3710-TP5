@@ -1,34 +1,54 @@
-#all-medecins {
-  margin: 20px;
+h1 {
+   text-align: center;
+   font-weight: 700;
+}
+html, body {
+  height: 100%;
+}
+tbody {
+  margin: 0;
+  background: linear-gradient(45deg,#49a09d,#5f2c82);
+  font-family: sans-serif;
+  font-weight: 100;
+}
+.container {
+  position: relative;
+  align-self: center;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+th, td {
+  padding: 15px;
+  background-color: rgba(255,255,255,0.2);
+  color: #fff;
+}
+th {
+  text-align: left;
+}
+thead th {
+  background-color: #55608f;
+}
+tbody tr:hover {
+  background-color: rgba(255,255,255,0.3);
+}
+tbody td {
+  position: relative;
+  font-weight: 600;
+  font-size: large;
+}
+tbody td:hover:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -9999px;
+  bottom: -9999px;
+  background-color: rgba(255,255,255,0.2);
+  z-index: -1;
 }
 
-#column-names {
-  border-style: solid;
-  border-color: black;
-  border-width: 1px;
-  padding: 5px;
-  background-color: aliceblue;
-}
-
-#column-names > td {
-  border-style: solid;
-  border-color: black;
-  border-width: 1px;
-  padding: 5px;
-}
-
-#medecin-rows {
-  border-style: solid;
-  border-color: black;
-  border-width: 1px;
-  padding: 5px;
-}
-
-#medecin-rows > td {
-  border-style: solid;
-  border-color: black;
-  border-width: 1px;
-  padding: 5px;
-}
-
-
+/* https://frontendresource.com/css-tables/ */
