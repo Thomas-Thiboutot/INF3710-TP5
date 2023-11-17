@@ -65,6 +65,14 @@ let DatabaseService = class DatabaseService {
             return res;
         });
     }
+    updateMedecin(idMedecin, prenom, nom, specialite, anneesExperience, idService) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const client = yield this.pool.connect();
+            const query = `UPDATE Medecins SET prenom = $2, nom = $3, specialite = $4, anneesExperience = $5, idService = $6 WHERE idMedecin = $1;`;
+            yield client.query(query, [idMedecin, prenom, nom, specialite, anneesExperience, idService]);
+            client.release();
+        });
+    }
 };
 DatabaseService = __decorate([
     (0, inversify_1.injectable)()

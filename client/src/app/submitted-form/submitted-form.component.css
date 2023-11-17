@@ -1,0 +1,25 @@
+h1 {
+  text-align: center;
+  font-weight: 700;
+}
+#button-container {
+  display: flex;
+  flex-direction: row;
+  width: 60%;
+  height: 80%;
+  align-items: center;
+  justify-content: center;
+}
+
+#button-container > a > button {
+  background-color: rgba(154, 117, 240, 1);
+  color: white;
+  margin: 5%;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

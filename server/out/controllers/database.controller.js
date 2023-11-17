@@ -47,6 +47,17 @@ let DatabaseController = class DatabaseController {
             yield this.databaseService.insertNewMedecin(req.body);
             res.status(201).json("Insertion completée");
         }));
+        this.router.put('/medecin/:id', (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const id = parseInt(req.params.id);
+            const { prenom, nom, specialite, anneesexperience, idservice } = req.body;
+            try {
+                const updatedMedecin = yield this.databaseService.updateMedecin(id, prenom, nom, specialite, anneesexperience, idservice);
+                res.status(200).json(updatedMedecin);
+            }
+            catch (error) {
+                res.status(500).send(error.message);
+            }
+        }));
     }
 };
 DatabaseController = __decorate([
