@@ -58,6 +58,16 @@ let DatabaseController = class DatabaseController {
                 res.status(500).send(error.message);
             }
         }));
+        this.router.delete('/medecin/:id', (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const id = parseInt(req.params.id);
+            try {
+                yield this.databaseService.deleteMedecin(id);
+                res.status(200).json("Suppression completée");
+            }
+            catch (error) {
+                res.status(500).send(error.message);
+            }
+        }));
     }
 };
 DatabaseController = __decorate([

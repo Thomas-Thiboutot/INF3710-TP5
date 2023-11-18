@@ -44,7 +44,7 @@
   <label for="idservice">ID service</label>
   <select #idservice="ngModel" class="form-control" id="idservice"
    [(ngModel)]="model.idservice" name="idservice" placeholder="0" required>
-    <option *ngFor="let number of numbers" [value]="number">{{number}}</option>
+    <option *ngFor="let number of numbers" [value]="number">{{number}} - {{specialites[number]}}</option>
   </select>
 </div>
 

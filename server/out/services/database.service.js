@@ -73,6 +73,14 @@ let DatabaseService = class DatabaseService {
             client.release();
         });
     }
+    deleteMedecin(idMedecin) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const client = yield this.pool.connect();
+            yield client.query('DELETE FROM Rendezvous WHERE idMedecin = $1;', [idMedecin]);
+            yield client.query('DELETE FROM Medecins WHERE idMedecin = $1;', [idMedecin]);
+            client.release();
+        });
+    }
 };
 DatabaseService = __decorate([
     (0, inversify_1.injectable)()
