@@ -47,6 +47,11 @@ export class CommunicationService {
       .pipe(map((res) => res.status === 200));
   }
 
+  deleteMedecin(id: number): Observable<boolean> {
+    return this.http.delete(`${this.baseUrl}/database/medecin/${id}`, { observe: 'response', responseType: 'text' })
+      .pipe(map((res) => res.status === 200));
+  }
+
   // À DÉCOMMENTER ET À UTILISER LORSQUE VOTRE COMMUNICATION EST IMPLÉMENTÉE
   // private handleError<T>(
   //   request: string,

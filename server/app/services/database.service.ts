@@ -53,4 +53,11 @@ export class DatabaseService {
     await client.query(query, [idMedecin, prenom, nom, specialite, anneesExperience, idService]);
     client.release();
   }
+
+  public async deleteMedecin(idMedecin: number) {
+    const client = await this.pool.connect();
+    await client.query('DELETE FROM Rendezvous WHERE idMedecin = $1;', [idMedecin]);
+    await client.query('DELETE FROM Medecins WHERE idMedecin = $1;', [idMedecin]);
+    client.release();
+  }
 }
