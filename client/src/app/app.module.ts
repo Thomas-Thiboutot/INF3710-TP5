@@ -12,6 +12,7 @@ import { MedecinsPageComponent } from './medecins-page/medecins-page.component';
 import { InsertMedecinFormComponent } from './insert-medecin-form/insert-medecin-form.component';
 import { SubmittedFormComponent } from './submitted-form/submitted-form.component';
 import { ModifyMedecinComponent } from './modify-medecin/modify-medecin.component';
+import { DeleteMedecinComponent } from './delete-medecin/delete-medecin.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ModifyMedecinComponent } from './modify-medecin/modify-medecin.componen
     MedecinsPageComponent,
     InsertMedecinFormComponent,
     SubmittedFormComponent,
-    ModifyMedecinComponent
+    ModifyMedecinComponent,
+    DeleteMedecinComponent
   ],
   imports: [
     CommonModule,

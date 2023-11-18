@@ -1,0 +1,22 @@
+<body>
+    <h1 id="page-title">Supprimer un médecin</h1>
+
+    <div class="content-container">
+        <table id="all-medecins">
+            <tr id="column-names">
+                <td *ngFor="let medecin of CommunicationService.medecins_column_name">{{ medecin }}</td>
+            </tr>
+            <tr id="medecin-rows" *ngFor="let medecin of medecins">
+                <td>{{medecin.idmedecin}}</td>
+                <td>{{medecin.prenom}}</td>
+                <td>{{medecin.nom}}</td>
+                <td>{{medecin.specialite}}</td>
+                <td>{{medecin.anneesexperience}}</td>
+                <td>{{medecin.idservice}}</td>
+                <td>
+                <button (click)="onSelectMedecin(medecin.idmedecin);">Supprimer</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
