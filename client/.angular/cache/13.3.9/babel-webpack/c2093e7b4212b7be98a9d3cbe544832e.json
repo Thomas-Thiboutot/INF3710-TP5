@@ -1,1 +1,0 @@
-{"ast":null,"code":"export class Medecin {\n  constructor(idmedecin, prenom, nom, specialite, anneesexperience, idservice) {\n    this.idmedecin = idmedecin;\n    this.prenom = prenom;\n    this.nom = nom;\n    this.specialite = specialite;\n    this.anneesexperience = anneesexperience;\n    this.idservice = idservice;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

@@ -15,26 +15,25 @@ import { ModifyMedecinComponent } from './modify-medecin/modify-medecin.componen
 import { DeleteMedecinComponent } from './delete-medecin/delete-medecin.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MedecinsPageComponent,
-    InsertMedecinFormComponent,
-    SubmittedFormComponent,
-    ModifyMedecinComponent,
-    DeleteMedecinComponent
-  ],
-  imports: [
-    CommonModule,
-    BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    AppMaterialModule
-  ],
-  providers: [CommunicationService],
-  entryComponents: [],
-  bootstrap: [AppComponent],
+    declarations: [
+        AppComponent,
+        MedecinsPageComponent,
+        InsertMedecinFormComponent,
+        SubmittedFormComponent,
+        ModifyMedecinComponent,
+        DeleteMedecinComponent
+    ],
+    imports: [
+        CommonModule,
+        BrowserModule,
+        HttpClientModule,
+        FormsModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        AppMaterialModule
+    ],
+    providers: [CommunicationService],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
